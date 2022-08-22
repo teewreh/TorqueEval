@@ -25,7 +25,7 @@ resource "aws_security_group" "websg" {
 
 resource "aws_instance" "web" {
     depends_on = [aws_instance.db]
-    ami = "ami-067f8db0a5c2309c0"
+    ami = data.aws_ami.ubuntu.id
     instance_type = "t2.small"
     subnet_id = "${aws_subnet.public-sub-1.id}"
     vpc_security_group_ids = ["${aws_security_group.websg.id}"]
