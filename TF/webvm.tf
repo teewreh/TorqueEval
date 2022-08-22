@@ -33,6 +33,7 @@ resource "aws_instance" "web" {
     user_data_replace_on_change = true
     user_data = <<EOF
 #!/bin/bash
+apt-add-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic universe"
 apt-get update -y
 apt-get install default-jdk -y
 apt-get install tomcat8 -y
