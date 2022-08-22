@@ -73,7 +73,8 @@ sed -i 's/bind-address/#bind-address/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # granting db access
 mysql --defaults-extra-file=/home/pk/my.cnf << EOL
-GRANT ALL ON *.* TO $DB_USER@'%' IDENTIFIED BY "$DB_PASS";
+CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
+GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';
 EOL
 
 mysql --defaults-extra-file=/home/pk/my.cnf -e "FLUSH PRIVILEGES;"
