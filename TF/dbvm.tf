@@ -29,7 +29,7 @@ resource "aws_instance" "db" {
     instance_type = "t2.small" 
     subnet_id = "${aws_subnet.private-sub.id}"
     vpc_security_group_ids = ["${aws_security_group.dbsg.id}"]
-    key_name = "tko-cfox-key"
+    key_name = "chrisfkey"
     user_data_replace_on_change = true
     user_data = <<EOF
 #!/bin/bash
