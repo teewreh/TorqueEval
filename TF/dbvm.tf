@@ -46,7 +46,7 @@ echo "mysql-server mysql-server/root_password_again password $DB_PASS" | debconf
 
 
 # Installing MYSQL
-apt-get install mysql-server -y
+apt-get install mysql-server=5.7* -y
 #apt-get install mysql-client -y
 
 
@@ -73,8 +73,7 @@ sed -i 's/bind-address/#bind-address/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # granting db access
 mysql --defaults-extra-file=/home/pk/my.cnf << EOL
-CREATE USER '$DB_USER'@'%' IDENTIFIED BY "$DB_PASS";
-GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';
+GRANT ALL ON *.* TO $DB_USER@'%' IDENTIFIED BY "$DB_PASS";
 EOL
 
 mysql --defaults-extra-file=/home/pk/my.cnf -e "FLUSH PRIVILEGES;"
