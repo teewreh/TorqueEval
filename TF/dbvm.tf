@@ -46,7 +46,7 @@ echo "mysql-server mysql-server/root_password_again password $DB_PASS" | debconf
 
 
 # Installing MYSQL
-apt-get install mysql-server=5.7* -y
+apt-get install mysql-server -y
 #apt-get install mysql-client -y
 
 
