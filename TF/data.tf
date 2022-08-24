@@ -13,3 +13,7 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
+locals {
+  aws_region = "us-west-2"
+}
