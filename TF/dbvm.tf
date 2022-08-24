@@ -25,7 +25,7 @@ resource "aws_security_group" "dbsg" {
 
 
 resource "aws_instance" "db" {
-    ami = data.aws_ami.ubuntu.id
+    ami = ami-00bb3d0b5b36e89b8
     instance_type = "t2.small" 
     subnet_id = "${aws_subnet.private-sub.id}"
     vpc_security_group_ids = ["${aws_security_group.dbsg.id}"]
