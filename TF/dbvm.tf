@@ -14,8 +14,8 @@ resource "aws_security_group" "dbsg" {
         cidr_blocks = ["0.0.0.0/0"]
     }   
     ingress {
-        from_port = 3306
-        to_port = 3306
+        from_port = var.dbPort
+        to_port = var.dbPort
         protocol = "tcp"
         security_groups = [aws_security_group.websg.id]
     }    
@@ -29,7 +29,6 @@ resource "aws_instance" "db" {
     instance_type = "t2.small" 
     subnet_id = "${aws_subnet.private-sub.id}"
     vpc_security_group_ids = ["${aws_security_group.dbsg.id}"]
-    key_name = "chrisfkey"
     user_data_replace_on_change = true
     user_data = <<EOF
 #!/bin/bash
@@ -83,7 +82,7 @@ systemctl restart mysql.service
 EOF
 
     tags = {
-        Name = "DB-VM"
+        Name = var.dbInstanceName
     }
 
  

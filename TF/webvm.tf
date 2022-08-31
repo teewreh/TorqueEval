@@ -14,8 +14,8 @@ resource "aws_security_group" "websg" {
         cidr_blocks = ["0.0.0.0/0"]
     }   
     ingress {
-        from_port = 8080
-        to_port = 8080
+        from_port = var.appPort
+        to_port = var.appPort
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }    
@@ -29,7 +29,6 @@ resource "aws_instance" "web" {
     instance_type = "t2.small"
     subnet_id = "${aws_subnet.public-sub-1.id}"
     vpc_security_group_ids = ["${aws_security_group.websg.id}"]
-    key_name = "chrisfkey"
     user_data_replace_on_change = true
     user_data = <<EOF
 #!/bin/bash
@@ -73,7 +72,7 @@ systemctl start tomcat8
 EOF
 
     tags = {
-        Name = "Web-VM"
+        Name = var.appInstanceName
     }
 
 }
