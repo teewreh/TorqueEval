@@ -46,7 +46,7 @@ DB_HOSTNAME="${aws_instance.db.private_ip}"
 mkdir /home/artifacts
 cd /home/artifacts || exit
 
-git clone https://github.com/QualiTorque/sample_java_spring_source.git
+git clone https://github.com/TeeWreh/TorqueJavaSpring/sample_java_spring_source.git
 
 mkdir /home/user/.config/torque-java-spring-sample -p
 
