@@ -7,8 +7,8 @@ grains:
   terraform:
     kind: terraform
     spec:
-      source: TorqueEval-TSW
-        path: TF
+      source: 
+        path: https://github.com/teewreh/TorqueEval.git/TF
       host:
         name: eks
       
