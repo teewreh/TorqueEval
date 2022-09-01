@@ -10,10 +10,10 @@ variable "dbPort" {
 
 variable "appInstanceName" {
   type    = string
-  default = "web-vm"
+  default = "Web-VM"
 }
 
 variable "dbInstanceName" {
   type    = string
-  default = "db-vm"
+  default = "DB-VM"
 }
