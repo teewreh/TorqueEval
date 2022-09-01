@@ -1,24 +1,15 @@
 spec_version: 2
 description: Blueprint for terraform for Torque Eval 
 
-outputs:
-  WebsiteUrl:
-    kind: link
-    value:
-inputs:
-  replicaCount:
-    display-style: normal
-   
+
 
 grains:
   terraform:
     kind: terraform
     spec:
       source:
-        path: https://github.com/teewreh/TorqueEval
+        store: TorqueEval-TSW
+        path: TF
       host:
         name: eks
-      inputs:
-        - replicaCount: '{{ .inputs.replicaCount }}'
-      commands:
-        - dep up bitnami/nginx
+      
