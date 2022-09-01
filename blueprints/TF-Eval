@@ -9,7 +9,7 @@ grains:
     spec:
       source:
         store: TorqueEval-TSW
-        path: TF
+        path: https://github.com/teewreh/TorqueEval/TF
       host:
         name: eks
       
