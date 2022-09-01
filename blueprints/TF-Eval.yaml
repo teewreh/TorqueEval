@@ -1,14 +1,17 @@
 spec_version: 2
 description: Blueprint for terraform for Torque Eval 
 
-
+outputs:
+  public_dns:
+    type: link
+    value: '{{ TorqueEval-TSW.grains.TF.outputs.public_dns }}:8080'
 
 grains:
   terraform:
     kind: terraform
     spec:
-      source:
-        path: github.com/teewreh/TorqueEval.git/TF
+      source: TorqueEval-TSW
+        path: TF
       host:
         name: eks
       
