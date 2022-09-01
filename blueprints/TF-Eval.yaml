@@ -1,7 +1,10 @@
 spec_version: 2
 description: Blueprint for terraform for Torque Eval 
 
-
+outputs:
+  kind: link
+  public_dns:
+    value: '{{ .grains.TF.outputs.public_dns }}'
 
 grains:
   terraform:
