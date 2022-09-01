@@ -13,5 +13,7 @@ grains:
       source: 
         path: https://github.com/teewreh/TorqueEval.git/TF
       host:
-        name: eks
+        name: eks  
+    outputs:
+    - public_dns:
       
