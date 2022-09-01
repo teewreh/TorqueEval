@@ -16,7 +16,7 @@ resource "aws_security_group" "websg" {
     ingress {
         from_port = var.appPort
         to_port = var.appPort
-        protocol = "http"
+        protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }    
 
