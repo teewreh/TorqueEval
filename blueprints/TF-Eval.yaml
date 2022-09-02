@@ -19,7 +19,8 @@ inputs:
 # blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs:
   public_dns:
-    value: '{{ .grains.TF.outputs.public_dns }}'
+    kind: link
+    value: '{{ .grains.TF.outputs.public_dns }}:8080'
 grains:
   TF:
     kind: terraform
