@@ -1,16 +1,48 @@
 spec_version: 2
-description: Blueprint for terraform for Torque Eval 
-
-
+description: Auto generated blueprint for terraform module TF
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  appInstanceName:
+    type: string
+    default: web-vm
+  appPort:
+    type: string
+    default: 8080
+  dbInstanceName:
+    type: string
+    default: db-vm
+  dbPort:
+    type: string
+    default: 3306
+  host_name:
+    type: execution-host
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs:
+  public_dns:
+    value: '{{ .grains.TF.outputs.public_dns }}'
 grains:
-  terraform:
+  TF:
     kind: terraform
     spec:
-      source: 
-        path: https://github.com/teewreh/TorqueEval.git/TF
+      source:
+        store: TorqueEval-TSW
+        path: TF
       host:
-        name: eks  
+      # Execution Host - the platform where the asset executable will run.
+      # For example, a Kubernetes cluster can be used as an execution host.
+        name: '{{ .inputs.host_name }}'
+        # A service account annotated with a role ARN with permissions to run the asset
+        # service-account: <service-account-name>
+      inputs:
+      - appInstanceName: '{{ .inputs.appInstanceName }}'
+      - appPort: '{{ .inputs.appPort }}'
+      - dbInstanceName: '{{ .inputs.dbInstanceName }}'
+      - dbPort: '{{ .inputs.dbPort }}'
+      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
+      # env-vars:
+      # - VAR_NAME: var value
+      env-vars: []
       outputs:
-        - grains.terraform.outputs.public_dns
-     
-  
+      - public_dns
+    # The terraform version that will be used to deploy the module
+    tf-version: 1.2.8
